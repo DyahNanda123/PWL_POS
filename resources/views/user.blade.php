@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Data User</title>
@@ -11,25 +11,20 @@
             <th>Username</th>
             <th>Nama</th>
             <th>ID Level Pengguna</th>
+            {{-- <th>Password</th> --}}
         </tr>
-        {{-- <tr>
-            <td>{{ $d->user_id }}</td>
-            <td>{{ $d->username }}</td>
-            <td>{{ $d->nama }}</td>
-            <td>{{ $d->level_id }}</td>
-        </tr>
-       --}}
-       {{-- <tr>
+        <tr>
         <td>{{ $data->user_id }}</td>
         <td>{{ $data->username }}</td>
         <td>{{ $data->nama }}</td>
         <td>{{ $data->level_id }}</td>
+        {{-- <td>{{ $data->password }}</td> --}}
     </tr>
     </table>
-</body> --}}
-{{-- </html> --}} 
+</body>
+</html>  
 
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 <head>
     <title>Data Pengguna</title>
@@ -45,4 +40,4 @@
         </tr>
     </table>
 </body>
-</html>
+</html> --}}
