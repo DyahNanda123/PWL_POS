@@ -31,7 +31,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Level Pengguna</label>
-                    <select name="level_id" id="level_id" class="form-control" required>
+                    <select name="level_id" class="form-control" required>
                         <option value="">- Pilih Level -</option>
                         @foreach($level as $l)
                             <option {{ ($l->level_id == $user->level_id) ? 'selected' : '' }} value="{{ $l->level_id }}">
