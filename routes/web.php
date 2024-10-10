@@ -69,7 +69,7 @@ Route::middleware(['authorize:ADM'])->group(function () {
 
 
 //untuk m_kategori
-Route::group(['prefix' => 'kategori'], function () {
+Route::prefix('kategori')->middleware('authorize:ADM,MNG,STF')->group(function () {
     Route::get('/', [KategoriController::class, 'index']);          // menampilkan halaman awal kategori
     Route::post('/list', [KategoriController::class, 'list']);      // menampilkan data kategori dalam bentuk json untuk datatables
     Route::get('/create', [KategoriController::class, 'create']);   // menampilkan halaman form tambah kategori
@@ -87,7 +87,7 @@ Route::group(['prefix' => 'kategori'], function () {
 });
 
 // untuk m_supplier
-Route::group(['prefix' => 'stok'], function () {
+Route::prefix('stok')->middleware('authorize:ADM,MNG')->group(function () {
     Route::get('/', [SupplierController::class, 'index']);          // menampilkan halaman awal supplier
     Route::post('/list', [SupplierController::class, 'list']);      // menampilkan data supplier dalam bentuk json untuk datatables
     Route::get('/create', [SupplierController::class, 'create']);   // menampilkan halaman form tambah supplier
@@ -105,7 +105,7 @@ Route::group(['prefix' => 'stok'], function () {
 });
 
 // untuk m_barang
-Route::group(['prefix' => 'barang'], function () {
+Route::prefix('barang')->middleware('authorize:ADM,MNG,STF')->group(function () {
     Route::get('/', [BarangController::class, 'index']);          // menampilkan halaman awal barang
     Route::post('/list', [BarangController::class, 'list']);      // menampilkan data barang dalam bentuk json untuk datatables
     Route::get('/create', [BarangController::class, 'create']);   // menampilkan halaman form tambah barang
