@@ -66,7 +66,7 @@
         });
     }
 
-    var tableBarang;
+    var dataBarang;
     $(document).ready(function() {
         tableBarang = $('#table-barang').DataTable({
             processing: true,
