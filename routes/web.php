@@ -93,6 +93,10 @@ Route::prefix('kategori')->middleware('authorize:ADM,MNG,STF')->group(function (
     Route::put('/{id}/update_ajax', [KategoriController::class, 'update_ajax']); // menyimpan perubahan data kategori ajax
     Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']); // untuk tampilkan form confirm delete kategori ajax
     Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']); // untuk hapus data kategori ajax
+    Route::get('/import', [KategoriController::class, 'import']); //ajax form upload excel
+    Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); //ajax form upload excel
+    Route::get('/export_excel', [KategoriController::class, 'export_excel']); //export excel
+    Route::get('/export_pdf', [KategoriController::class, 'export_pdf']); //export excel
     Route::delete('/{id}', [KategoriController::class, 'destroy']); // menghapus data kategori
 });
 
