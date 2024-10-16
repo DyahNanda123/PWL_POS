@@ -121,6 +121,8 @@ Route::prefix('barang')->middleware('authorize:ADM,MNG,STF')->group(function () 
     Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']); // menyimpan perubahan data supplier ajax
     Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']); // untuk tampilkan form confirm delete supplier ajax
     Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']); // untuk hapus data supplier ajax
+    Route::get('/import', [BarangController::class, 'import']); //ajax form upload excel
+    Route::post('/import_ajax', [BarangController::class, 'import_ajax']); //ajax form upload excel
     Route::delete('/{id}', [BarangController::class, 'destroy']); // menghapus data barang
 });
 
