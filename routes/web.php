@@ -115,6 +115,10 @@ Route::prefix('stok')->middleware('authorize:ADM,MNG')->group(function () {
     Route::put('/{id}/update_ajax', [SupplierController::class, 'update_ajax']); // menyimpan perubahan data supplier ajax
     Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax']); // untuk tampilkan form confirm delete supplier ajax
     Route::delete('/{id}/delete_ajax', [SupplierController::class, 'delete_ajax']); // untuk hapus data supplier ajax
+    Route::get('/import', [SupplierController::class, 'import']); //ajax form upload excel
+    Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); //ajax form upload excel
+    Route::get('/export_excel', [SupplierController::class, 'export_excel']); //export excel
+    Route::get('/export_pdf', [SupplierController::class, 'export_pdf']); //export excel
     Route::delete('/{id}', [SupplierController::class, 'destroy']); // menghapus data supplier
 });
 
