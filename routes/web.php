@@ -45,6 +45,10 @@ Route::group(['prefix' => 'user'], function () {
     Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']); // menyimpan perubahan data user ajax
     Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']); // untuk tampilkan form confirm delete user ajax
     Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']); // untuk hapus data user ajax
+    Route::get('/import', [UserController::class, 'import']); //ajax form upload excel
+    Route::post('/import_ajax', [UserController::class, 'import_ajax']); //ajax form upload excel
+    Route::get('/export_excel', [UserController::class, 'export_excel']); //export excel
+    Route::get('/export_pdf', [UserController::class, 'export_pdf']); //export excel
     Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
     
 });

@@ -6,8 +6,10 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('user/create') }}">Tambah</a>
-                <button onclick="modalAction('{{ url('user/create_ajax')}}')" class="btn btn-success mt-1">Tambah Ajax</button>
+                <button onclick="modalAction('{{ url('/user/import') }}')" class="btn btn-info">Import Data User</button> 
+                  <a href="{{ url('/user/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Export Data User</a> 
+                <a href="{{ url('/user/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Export Data User</a> 
+                <button onclick="modalAction('{{ url('user/create_ajax')}}')" class="btn btn-success mt-1">Tambah Data (Ajax)</button>
             </div>
         </div>
         <div class="card-body">
@@ -22,7 +24,7 @@
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Filter:</label>
                         <div class="col-3">
-                            <select class="form-control" id="level_id" name="level_id" required>
+                            <select class="form-control" id="filter_level_id" name="level_id" required>
                                 <option value="">- Semua -</option>
                                 @foreach ($level as $item)
                                     <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
@@ -66,7 +68,7 @@
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d){
-                        d.level_id=$('#level_id').val();
+                        d.level_id=$('#filter_level_id').val();
                     }
                 },
                 columns: [{
@@ -100,7 +102,7 @@
                     searchable: false
                 }]
             });
-            $('#level_id').on('change', function(){
+            $('#filter_level_id').on('change', function(){
               dataUser.ajax.reload();
             });
         });

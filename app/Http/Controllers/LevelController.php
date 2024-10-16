@@ -355,7 +355,7 @@ class LevelController extends Controller
         
         $sheet->setTitle('Data Level User'); // set title sheet
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $filename = 'Data User ' . date('Y-m-d H:i:s') . '.xlsx';
+        $filename = 'Data Level User ' . date('Y-m-d H:i:s') . '.xlsx';
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename . '"');
         header('Cache-Control: max-age=0');
