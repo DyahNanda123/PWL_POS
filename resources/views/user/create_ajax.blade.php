@@ -27,6 +27,13 @@
                     <input value="" type="text" name="nama" id="nama" class="form-control" required>
                     <small id="error-nama" class="error-text form-text text-danger"></small>
                 </div>
+                
+                <div class="form-group">
+                    <label>Foto Profil</label>
+                    <input type="file" name="file_profil" id="file_profil" class="form-control" required>
+                    <small id="error-file_profil" class="error-text form-text text-danger"></small>
+                </div>
+
                 <div class="form-group">
                     <label>Password</label>
                     <input value="" type="password" name="password" id="password" class="form-control" required>
@@ -62,6 +69,10 @@
                     required: true,
                     minlength: 6,
                     maxlength: 20
+                }
+                file_profile: {
+                    required: true, 
+                    extension: "jpg|jpeg|png|ico|bmp"
                 }
             },
             submitHandler: function(form) {

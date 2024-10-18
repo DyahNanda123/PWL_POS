@@ -33,6 +33,11 @@
                         <th>Password</th>
                         <td>********</td>
                     </tr>
+                    <tr>
+                        {{-- <th>Foto Profil</th> --}}
+                        <img src="{{ asset('storage/' . $user->file_profil) }}" alt="Profile Picture" class="img-fluid" style="max-width: 150px; height: auto;">
+
+                    </tr>
                 </table>
             @endempty
             <a href="{{ url('user') }}" class="btn btn-sm btn-default mt-2">Kembali</a>

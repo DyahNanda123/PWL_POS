@@ -56,7 +56,7 @@ Route::group(['prefix' => 'user'], function () {
 // Route::get('/', [WelcomeController::class, 'index']);
 
 // untuk m_level
-Route::middleware(['authorize:ADM'])->group(function () {
+Route::middleware(['authorize:MNG'])->group(function () {
     Route::get('/level', [LevelController::class, 'index']);          // menampilkan halaman awal level
     Route::post('/level/list', [LevelController::class, 'list']);      // menampilkan data level dalam bentuk json untuk datatables
     Route::get('/level/create', [LevelController::class, 'create']);   // menampilkan halaman form tambah level

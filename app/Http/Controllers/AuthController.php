@@ -19,7 +19,18 @@ class AuthController extends Controller
     {
         if ($request->ajax() || $request->wantsJson()) {
             $credentials = $request->only('username', 'password');
+            // if (Auth::attempt($credentials)) {
+            //     return response()->json([
+            //         'status' => true,
+            //         'message' => 'Login Berhasil',
+            //         'redirect' => url('/')
+            //     ]);
+            // } dimatiin dulu
             if (Auth::attempt($credentials)) {
+                session([
+                    'profile_img_path' => Auth::user()->file_profil,
+                    'user_id' => Auth::user()->user_id
+                ]);
                 return response()->json([
                     'status' => true,
                     'message' => 'Login Berhasil',
@@ -29,10 +40,11 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Login Gagal'
-            ]);
+                ]);
+            }
+            return redirect('login');
         }
-        return redirect('login');
-    }
+
     public function logout(Request $request)
     {
         Auth::logout();

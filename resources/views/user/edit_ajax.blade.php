@@ -51,6 +51,14 @@
                     <input value="{{ $user->nama }}" type="text" name="nama" id="nama" class="form-control" required>
                     <small id="error-nama" class="error-text form-text text-danger"></small>
                 </div>
+
+                <div class="form-group">
+                    <label>Foto Profil</label>
+                    <input type="file" name="file_profil" id="file_profil" class="form-control">
+                    <small class="form-text text-muted">Abaikan jika tidak ingin ubah foto profil</small>
+                    <small id="error-file_profil" class="error-text form-text text-danger"></small>
+                </div>
+
                 <div class="form-group">
                     <label>Password</label>
                     <input value="" type="password" name="password" id="password" class="form-control">
@@ -72,37 +80,43 @@ $(document).ready(function() {
             level_id: { required: true, number: true },
             username: { required: true, minlength: 3, maxlength: 20 },
             nama: { required: true, minlength: 3, maxlength: 100 },
-            password: { minlength: 6, maxlength: 20 }
+            password: { minlength: 6, maxlength: 20 },
+            file_profil: { extension: "jpg|jpeg|png|ico|bmp"}
         },
+    
         submitHandler: function(form) {
-            $.ajax({
-                url: form.action,
-                type: form.method,
-                data: $(form).serialize(),
-                success: function(response) {
-                    if (response.status) {
-                        $('#myModal').modal('hide');
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: response.message
-                        });
-                        dataUser.ajax.reload();
-                    } else {
-                        $('.error-text').text('');
-                        $.each(response.msgField, function(prefix, val) {
-                            $('#error-' + prefix).text(val[0]);
-                        });
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Terjadi Kesalahan',
-                            text: response.message
-                        });
-                    }
-                }
-            });
-            return false;
-        },
+    let formData = new FormData(form);
+    $.ajax({
+        url: form.action,
+        type: form.method,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            if (response.status) {
+                $('#myModal').modal('hide');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: response.message
+                });
+                dataUser.ajax.reload();
+            } else {
+                $('.error-text').text('');
+                $.each(response.msgField, function(prefix, val) {
+                    $('#error-' + prefix).text(val[0]);
+                });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terjadi Kesalahan',
+                    text: response.message
+                });
+            }
+        }
+    });
+    return false;
+},
+
         errorElement: 'span',
         errorPlacement: function(error, element) {
             error.addClass('invalid-feedback');

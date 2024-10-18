@@ -42,6 +42,7 @@
                         <th>Username</th>
                         <th>Nama</th>
                         <th>Level Pengguna</th>
+                        <th>Foto Profil</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -96,6 +97,12 @@
                     orderable: false,
                     searchable: false
                 }, {
+                    data: "file_profil",
+                    className: "",
+                    width: "14%",
+                    orderable: false,
+                    searchable: false
+                },{
                     data: "aksi",
                     className: "",
                     orderable: false,
