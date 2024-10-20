@@ -55,6 +55,7 @@
     </form>
     <script>
         $(document).ready(function() {
+            var tableStok = $('#table-stok').DataTable();
             $("#form-delete").validate({
                 rules: {},
                 submitHandler: function(form) {
@@ -70,7 +71,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataStok.ajax.reload();
+                                tableStok.ajax.reload();
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {

@@ -54,6 +54,7 @@
         </form>
         <script>
             $(document).ready(function() {
+                var tableStok = $('#table-stok').DataTable();
                 $("#form-edit").validate({
                     rules: {
                         supplier_kode: {
@@ -85,7 +86,7 @@
                                         title: 'Berhasil',
                                         text: response.message
                                     });
-                                    dataStok.ajax.reload();
+                                    tableStok.ajax.reload();
                                 } else {
                                     $('.error-text').text('');
                                     $.each(response.msgField, function(prefix, val) {

@@ -48,6 +48,7 @@
         </form>
         <script>
             $(document).ready(function() {
+                var tableKategori = $('#table-kategori').DataTable();
                 $("#form-edit").validate({
                     rules: {
                         kategori_kode: {
@@ -74,7 +75,7 @@
                                         title: 'Berhasil',
                                         text: response.message
                                     });
-                                    dataKategori.ajax.reload();
+                                    tableKategori.ajax.reload();
                                 } else {
                                     $('.error-text').text('');
                                     $.each(response.msgField, function(prefix, val) {

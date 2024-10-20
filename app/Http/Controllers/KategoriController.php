@@ -88,7 +88,7 @@ class KategoriController extends Controller
 
     public function create_ajax()
     {
-        return view('kategori.create_');
+        return view('kategori.create_ajax');
     }
 
     // Menyimpan data kategori baru
@@ -180,7 +180,7 @@ class KategoriController extends Controller
     public function edit_ajax(string $id)
     {
         $kategori = KategoriModel::find($id);
-        return view('kategori.edit_', ['kategori' => $kategori]);
+        return view('kategori.edit_ajax', ['kategori' => $kategori]);
     }
 
     // Menyimpan perubahan data kategori

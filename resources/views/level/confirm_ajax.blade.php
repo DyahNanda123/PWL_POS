@@ -51,6 +51,7 @@
     </form>
     <script>
         $(document).ready(function() {
+            var tableLevel = $('#table-level').DataTable();
             $("#form-delete").validate({
                 rules: {},
                 submitHandler: function(form) {
@@ -66,7 +67,7 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataLevel.ajax.reload();
+                                tableLevel.ajax.reload();
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {

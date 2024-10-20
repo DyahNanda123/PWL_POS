@@ -1,61 +1,53 @@
-<form action="{{ url('/stok/ajax') }}" method="POST" id="form-tambah">
+<form action="{{ url('/stokBarang/import_ajax') }}" method="POST" id="form-import" enctype="multipart/form-data">
     @csrf
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data supplier</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">Import Data Stok Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Supplier Kode</label>
-                    <input value="" type="text" name="supplier_kode" id="supplier_kode" class="form-control" required>
-                    <small id="error-supplier_kode" class="error-text form-text text-danger"></small>
+                    <label>Download Template</label>
+                    <a href="{{ asset('template_stokBarang.xlsx') }}" class="btn btn-info btn-sm" download>
+                        <i class="fa fa-file-excel"></i> Download
+                    </a>
+                    <small id="error-supplier_id" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Nama supplier</label>
-                    <input value="" type="text" name="supplier_nama" id="supplier_nama" class="form-control" required>
-                    <small id="error-supplier_nama" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Alamat supplier</label>
-                    <input value="" type="text" name="supplier_alamat" id="supplier_alamat" class="form-control" required>
-                    <small id="error-supplier_alamat" class="error-text form-text text-danger"></small>
+                    <label>Pilih File</label>
+                    <input type="file" name="file_template_stokBarang" id="file_template_stokBarang" class="form-control" required>
+                    <small id="error-file_template_stokBarang" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
             </div>
         </div>
     </div>
 </form>
+
 <script>
     $(document).ready(function() {
-        var tableStok = $('#table-stok').DataTable();
-        $("#form-tambah").validate({
+        $("#form-import").validate({
             rules: {
-                supplier_kode: {
+                file_template_stokBarang: { // Perbaikan nama di sini
                     required: true,
-                    minlength: 1,
-                    maxlength: 20
-                },
-                supplier_nama: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 100
-                },
-                supplier_alamat: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 100
+                    extension: "xlsx"
                 }
             },
             submitHandler: function(form) {
+                var formData = new FormData(form);
+                
                 $.ajax({
                     url: form.action,
                     type: form.method,
-                    data: $(form).serialize(),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response) {
                         if (response.status) {
                             $('#myModal').modal('hide');
@@ -64,7 +56,7 @@
                                 title: 'Berhasil',
                                 text: response.message
                             });
-                            tableStok.ajax.reload();
+                            dataStokBarang.ajax.reload();
                         } else {
                             $('.error-text').text('');
                             $.each(response.msgField, function(prefix, val) {

@@ -32,6 +32,7 @@
 </form>
 <script>
     $(document).ready(function() {
+        var tableLevel = $('#table-level').DataTable();
         // Validasi Form dengan jQuery Validate
         $("#form-tambah").validate({
             rules: {
@@ -61,7 +62,7 @@
                                 text: response.message
                             });
                             // Reload data dari tabel yang relevan
-                            dataLevel.ajax.reload(); 
+                            tableLevel.ajax.reload(); 
                         } else {
                             // Tampilkan error dari field yang salah
                             $('.error-text').text('');

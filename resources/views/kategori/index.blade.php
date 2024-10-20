@@ -63,7 +63,7 @@
         });
     }
 
-    var datakategori;
+    var tableKategori;
     $(document).ready(function() {
         tablekategori = $('#table-kategori').DataTable({
             processing: true,
