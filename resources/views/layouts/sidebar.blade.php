@@ -10,6 +10,7 @@
             </div>
         </div>
     </div>
+
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -19,13 +20,19 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-header">Data Pengguna</li>
             <li class="nav-item">
+                <a href="{{ url('/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }} ">
+                    <i class="nav-icon far fa-address-card"></i>
+                    <p>Profile</p>
+                </a>
+            </li>
+            <li class="nav-header">Data Pengguna</li>
+            {{-- <li class="nav-item">
                 <a href="{{ url('/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user-circle"></i>
                     <p>Profile</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a href="{{ url('/level') }}" class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-layer-group"></i>
@@ -38,6 +45,7 @@
                     <p>Data User</p>
                 </a>
             </li>
+
             <li class="nav-header">Data Barang</li>
             <li class="nav-item">
                 <a href="{{ url('/kategori') }}" class="nav-link {{ $activeMenu == 'kategori' ? 'active' : '' }}">
@@ -61,8 +69,9 @@
                 <a href="{{ url('/stokBarang') }}" class="nav-link {{ $activeMenu == 'stokBarang' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-box"></i>
                     <p>Stok Barang</p>
-                </a>                
+                </a>
             </li>
+
             <li class="nav-header">Data Transaksi</li>
             <li class="nav-item">
                 <a href="{{ url('/penjualan') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }}">
@@ -73,6 +82,7 @@
         </ul>
     </nav>
 </div>
+
 <!-- Menambahkan Menu Logout -->
 <li class="nav-item">
     <a href="{{ url('logout') }}" class="nav-link"

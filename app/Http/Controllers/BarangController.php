@@ -40,16 +40,16 @@ class BarangController extends Controller
         }
 
         return DataTables::of($barang)
-            ->addIndexColumn()
-            ->addColumn('aksi', function ($barang) {
-                $btn = '<a href="' . url('/barang/' . $barang->barang_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-                // $btn  = '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
-                $btn .= '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
-                $btn .= '<button onclick="modalAction(\''.url('/barang/' . $barang->barang_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
-                return $btn;
-            })
-            ->rawColumns(['aksi'])
-            ->make(true);
+        ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex) 
+        ->addColumn('aksi', function ($barang) { // menambahkan kolom aksi 
+            // $btn = '<a href="' . url('/level/' . $level->level_id) . '" class="btn btn-info btn-sm">Detail</a> '; //tidak menggunakan ajax
+            $btn = '<button onclick="modalAction(\'' . url('/barang/' . $barang->barang_id . '/show_ajax') . '\')" class="btn btn-info btn-sm">Detail</button> '; //menggunakan ajax
+            $btn .= '<button onclick="modalAction(\'' . url('/barang/' . $barang->barang_id . '/edit_ajax') . '\')" class="btn btn-warning btn-sm">Edit</button> ';
+            $btn .= '<button onclick="modalAction(\'' . url('/barang/' . $barang->barang_id . '/delete_ajax') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
+            return $btn;
+        })
+        ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html 
+        ->make(true);
     }
 
     public function create_ajax()
@@ -95,15 +95,19 @@ class BarangController extends Controller
         $activeMenu = 'barang'; // set menu yang sedang aktif
         return view('barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
     }
-    // Menampilkan detail barang
-    // public function show_ajax(string $id)
-    // {
-    //     $barang = BarangModel::with('kategori')->find($id);
-    //     $breadcrumb = (object) ['title' => 'Detail Barang', 'list' => ['Home', 'Barang', 'Detail']];
-    //     $page = (object) ['title' => 'Detail barang'];
-    //     $activeMenu = 'barang'; // set menu yang sedang aktif
-    //     return view('barang.show_ajax', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
-    // }
+    public function show_ajax(string $id)
+    {
+        $barang = BarangModel::find($id);
+
+        if (!$barang) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data level tidak ditemukan'
+            ]);
+        }
+
+        return view('barang.show_ajax', ['barang' => $barang]);
+    }
 
     // Menampilkan halaman form edit barang ajax
     public function edit_ajax(string $id)
