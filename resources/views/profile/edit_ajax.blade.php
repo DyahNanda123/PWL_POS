@@ -75,6 +75,7 @@
 </form>
 <script>
 $(document).ready(function() {
+    var dataUser;
     $("#form-edit").validate({
         rules: {
             level_id: { required: true, number: true },
@@ -100,7 +101,7 @@ $(document).ready(function() {
                     title: 'Berhasil',
                     text: response.message
                 });
-                profile.ajax.reload();
+                dataUser.ajax.reload();
             } else {
                 $('.error-text').text('');
                 $.each(response.msgField, function(prefix, val) {

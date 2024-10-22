@@ -67,9 +67,9 @@
                 $('#myModal').modal('show');
             });
         }
-        var profile;
+        var dataUser;
         $(document).ready(function() {
-            profile = $('#profile').on({
+            dataUser = $('#profile').on({
                 autoWidth: false,
                 serverSide: true,
                 ajax: {
@@ -82,7 +82,7 @@
                 },
             });
             $('#profile').on('change', function() {
-                profile.ajax.reload();
+                dataUser.ajax.reload();
             });
         });
     </script>
