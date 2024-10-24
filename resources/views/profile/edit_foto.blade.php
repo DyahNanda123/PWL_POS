@@ -65,6 +65,9 @@
                                 });
                                 // Perbarui tampilan foto jika ada elemen dengan ID tertentu untuk foto pengguna
                                 $('#user-photo').attr('src', response.new_photo_url); // Ganti sesuai dengan ID elemen foto di HTML
+                                setTimeout(function() {
+                                        location.reload();
+                                    }, 2000);
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {

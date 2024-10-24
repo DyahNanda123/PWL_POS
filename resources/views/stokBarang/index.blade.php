@@ -25,16 +25,32 @@
                         <label class="col-1 control-label col-form-label">Filter:</label>
                         <div class="col-3">
                             <select class="form-control" id="filter_supplier_id" name="supplier_id" required>
-                                <option value="">- Semua Supplier -</option>
-                                {{-- @foreach ($suppliers as $supplier)
-                                    <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
-                                @endforeach --}}
+                                <option value="">- Semua -</option>
+                                @foreach ($supplier as $item)
+                                    <option value="{{ $item->supplier_id }}">{{ $item->supplier_id }}</option>
+                                @endforeach
                             </select>
-                            <small class="form-text text-muted">Filter berdasarkan Supplier</small>
+                            <small class="form-text text-muted">Data Supplier</small>
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Filter:</label>
+                        <div class="col-3">
+                            <select class="form-control" id="filter_supplier_id" name="supplier_id" required>
+                                <option value="">- Semua -</option>
+                                @foreach ($barang as $item)
+                                    <option value="{{ $item->barang_nama }}">{{ $item->barang_nama }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">Data Barang</small>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
             <table class="table table-bordered table-striped table-hover table-sm" id="table_stokBarang">
                 <thead>
                     <tr>
@@ -120,6 +136,9 @@
             $('#filter_supplier_id').on('change', function(){
               dataStokBarang.ajax.reload();
             });
+            // $('#filter_barang_nama').on('change', function(){
+            //   dataStokBarang.ajax.reload();
+            // });
         });
     </script>
 @endpush

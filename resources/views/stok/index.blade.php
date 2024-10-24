@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <!-- untuk Filter data -->
-        <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
+        {{-- <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group form-group-sm row text-sm mb-0">
@@ -23,13 +23,13 @@
                                 {{-- @foreach($stok as $l)
                                     <option value="{{ $l->stok_id }}">{{ $l->stok_nama }}</option>
                                 @endforeach --}}
-                            </select>
+                            {{-- </select>
                             <small class="form-text text-muted">stok stok</small>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}} 
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -117,15 +117,15 @@
             ]
         });
 
-        $('#table-stok_filter input').unbind().bind().on('keyup', function(e) {
-            if (e.keyCode == 13) { // enter key
-                tablestok.search(this.value).draw();
-            }
-        });
+        // $('#table-stok_filter input').unbind().bind().on('keyup', function(e) {
+        //     if (e.keyCode == 13) { // enter key
+        //         tablestok.search(this.value).draw();
+        //     }
+        // });
 
-        $('.filter_stok').change(function() {
-            tablestok.draw();
-        });
+        // $('.filter_stok').change(function() {
+        //     tablestok.draw();
+        // });
     });
 </script>
 @endpush

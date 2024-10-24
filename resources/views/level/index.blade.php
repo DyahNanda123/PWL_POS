@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <!-- untuk Filter data -->
-        <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
+        {{-- <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group form-group-sm row text-sm mb-0">
@@ -23,13 +23,13 @@
                                 {{-- @foreach($levels as $level)
                                     <option value="{{ $level->level_id }}">{{ $level->level_nama }}</option>
                                 @endforeach --}}
-                            </select>
+                            {{-- </select>
                             <small class="form-text text-muted">Filter Level</small>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}} 
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -105,15 +105,15 @@
             ]
         });
 
-        $('#table-level_filter input').unbind().bind().on('keyup', function(e) {
-            if (e.keyCode == 13) { // enter key
-                tableLevel.search(this.value).draw();
-            }
-        });
+        // $('#table-level_filter input').unbind().bind().on('keyup', function(e) {
+        //     if (e.keyCode == 13) { // enter key
+        //         tableLevel.search(this.value).draw();
+        //     }
+        // });
 
-        $('.filter_level').change(function() {
-            tableLevel.draw();
-        });
+        // $('.filter_level').change(function() {
+        //     tableLevel.draw();
+        // });
     });
 </script>
 @endpush

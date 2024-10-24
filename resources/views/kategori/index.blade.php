@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <!-- untuk Filter data -->
-        <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
+        {{-- <div id="filter" class="form-horizontal filter-date p-2 border-bottom mb-2">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group form-group-sm row text-sm mb-0">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -109,15 +109,15 @@
             ]
         });
 
-        $('#table-kategori_filter input').unbind().bind().on('keyup', function(e) {
-            if (e.keyCode == 13) { // enter key
-                tablekategori.search(this.value).draw();
-            }
-        });
+        // $('#table-kategori_filter input').unbind().bind().on('keyup', function(e) {
+        //     if (e.keyCode == 13) { // enter key
+        //         tablekategori.search(this.value).draw();
+        //     }
+        // });
 
-        $('.filter_kategori').change(function() {
-            tablekategori.draw();
-        });
+        // $('.filter_kategori_kode').change(function() {
+        //     tablekategori.draw();
+        // });
     });
 </script>
 @endpush

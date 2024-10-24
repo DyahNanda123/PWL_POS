@@ -86,9 +86,12 @@ class StokBarangController extends Controller
                    ->with(['supplier', 'barang', 'user']); // jika ada relasi dengan supplier dan barang
         
       // Filter stok berdasarkan supplier_id jika diberikan
-       if ($request->stok_id){ 
-           $stokBarang->where('stok_id', $request->stok_id); 
+       if ($request->supplier_id){ 
+           $stokBarang->where('supplier_id', $request->supplier_id); 
        } 
+    //    if ($request->barang_nama){ 
+    //     $stokBarang->where('barang_nama', $request->barang_nama); 
+    // } 
     
        return DataTables::of($stokBarang)
         ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex) 
