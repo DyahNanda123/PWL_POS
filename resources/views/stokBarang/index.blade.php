@@ -27,7 +27,7 @@
                             <select class="form-control" id="filter_supplier_id" name="supplier_id" required>
                                 <option value="">- Semua -</option>
                                 @foreach ($supplier as $item)
-                                    <option value="{{ $item->supplier_id }}">{{ $item->supplier_id }}</option>
+                                    <option value="{{ $item->supplier_id }}">{{ $item->supplier_nama }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">Data Supplier</small>
@@ -55,10 +55,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ID Stok</th>
-                        <th>ID Supplier</th>
-                        <th>ID Barang</th>
-                        <th>ID User</th>
+                        {{-- <th>ID Stok</th> --}}
+                        <th>Nama Supplier</th>
+                        <th>Nama Barang</th>
+                        <th>Nama User</th>
                         <th>Tanggal Stok</th>
                         <th>Jumlah Stok</th>
                         <th>Aksi</th>
@@ -95,24 +95,25 @@
                     orderable: false,
                     searchable: false
                 },
+                // {
+                //     data: "stok_id",
+                //     className: "",
+                //     // width: "10%",
+                //     orderable: true,
+                //     searchable: true
+                // },
                 {
-                    data: "stok_id",
-                    className: "",
-                    // width: "10%",
-                    orderable: true,
-                    searchable: true
-                },{
-                    data: "supplier.supplier_id", // Ambil nama supplier dari relasi
+                    data: "supplier.supplier_nama", // Ambil nama supplier dari relasi
                     className: "",
                     orderable: true,
                     searchable: true
                 },{
-                    data: "barang.barang_id", // Ambil nama barang dari relasi
+                    data: "barang.barang_nama", // Ambil nama barang dari relasi
                     className: "",
                     orderable: true,
                     searchable: true
                 }, {
-                    data: "user.user_id", // Ambil nama user dari relasi
+                    data: "user.nama", // Ambil nama user dari relasi
                     className: "",
                     orderable: true,
                     searchable: true

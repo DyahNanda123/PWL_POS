@@ -30,21 +30,21 @@
                     <h5><i class="icon fas fa-info"></i> Detail Informasi</h5>
                 </div>
                 <table class="table table-sm table-bordered table-striped">
-                    <tr>
+                    {{-- <tr>
                         <th class="text-right col-3">ID Stok:</th>
                         <td class="col-9">{{ $stokBarang->stok_id }}</td>
                     </tr>
-                    <tr>
-                        <th class="text-right col-3">ID Supplier:</th>
-                        <td class="col-9">{{ $stokBarang->supplier->supplier_id }}</td>
+                    <tr> --}}
+                        <th class="text-right col-3">Nama Supplier:</th>
+                        <td class="col-9">{{ $stokBarang->supplier->supplier_nama }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">ID Barang:</th>
-                        <td class="col-9">{{ $stokBarang->barang->barang_id }}</td>
+                        <th class="text-right col-3">Nama Barang:</th>
+                        <td class="col-9">{{ $stokBarang->barang->barang_nama }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">ID User:</th>
-                        <td class="col-9">{{ $stokBarang->user->user_id }}</td>
+                        <th class="text-right col-3">Nama User:</th>
+                        <td class="col-9">{{ $stokBarang->user->nama }}</td>
                     </tr>
                     <tr>
                         <th class="text-right col-3">Tanggal Stok:</th>
