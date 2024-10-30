@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Auth; //tambahan
 use Illuminate\Support\Facades\Storage; // tambahan
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class UserController extends Controller
 {
