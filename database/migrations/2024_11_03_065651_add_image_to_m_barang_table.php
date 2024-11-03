@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('m_barang', function (Blueprint $table) {
-            $table->string('image')->nullable(); // Menambahkan kolom image dengan nullable
+           // $table->string('image')->nullable(); // Menambahkan kolom image dengan nullable
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('m_barang', function (Blueprint $table) {
-            $table->dropColumn('image');
+          //  $table->dropColumn('image');
         });
     }
 };
