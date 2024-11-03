@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\BarangModel;
+use App\Models\Penjualan; // Pastikan Anda telah membuat model Penjualan
+use App\Models\PenjualanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class BarangController extends Controller
+class PenjualanController extends Controller
 {
     public function __invoke(Request $request)
     {
@@ -31,20 +32,18 @@ class BarangController extends Controller
 
     protected function index()
     {
-        $barang = BarangModel::all();
-        return response()->json($barang, 200);
+        $penjualans = PenjualanModel::all();
+        return response()->json($penjualans, 200);
     }
 
     protected function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'barang_kode' => 'required|min:1|max:20|unique:m_barang,barang_kode',
-            'barang_nama' => 'required|string|max:100',
-            'deskripsi' => 'nullable|string',
-            'harga_beli' => 'required|numeric',
-            'harga_jual' => 'required|numeric',
-            'kategori_id' => 'required|integer|exists:m_kategori,kategori_id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'user_id'           => 'required|integer',
+            'pembeli'           => 'required|string|min:3|max:100',
+            'penjualan_kode'    => 'required|string|min:3|unique:t_penjualan,penjualan_kode',
+            'penjualan_tanggal' => 'required|date',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk gambar
         ]);
 
         if ($validator->fails()) {
@@ -58,49 +57,45 @@ class BarangController extends Controller
             $image->move(public_path('images'), $imageName);
         }
 
-        $barang = BarangModel::create([
-            'barang_kode' => $request->barang_kode,
-            'barang_nama' => $request->barang_nama,
-            'deskripsi' => $request->deskripsi,
-            'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual,
-            'kategori_id' => $request->kategori_id,
-            'image' => $imageName,
+        $penjualan = PenjualanModel::create([
+            'user_id'           => $request->user_id,
+            'pembeli'           => $request->pembeli,
+            'penjualan_kode'    => $request->penjualan_kode,
+            'penjualan_tanggal' => $request->penjualan_tanggal,
+            'image'             => $imageName, // Simpan path gambar
         ]);
 
         return response()->json([
             'success' => true,
-            'data' => $barang,
+            'data' => $penjualan,
         ], 201);
     }
 
     protected function show($id)
     {
-        $barang = BarangModel::find($id);
+        $penjualan = PenjualanModel::find($id);
 
-        if (!$barang) {
+        if (!$penjualan) {
             return response()->json(['error' => 'Data tidak ditemukan'], 404);
         }
 
-        return response()->json($barang, 200);
+        return response()->json($penjualan, 200);
     }
 
     protected function update(Request $request, $id)
     {
-        $barang = BarangModel::find($id);
+        $penjualan = PenjualanModel::find($id);
 
-        if (!$barang) {
+        if (!$penjualan) {
             return response()->json(['error' => 'Data tidak ditemukan'], 404);
         }
 
         $validator = Validator::make($request->all(), [
-            'barang_kode' => 'sometimes|required|min:1|max:20|unique:m_barang,barang_kode,' . $barang->id,
-            'barang_nama' => 'sometimes|required|string|max:100',
-            'deskripsi' => 'nullable|string',
-            'harga_beli' => 'sometimes|required|numeric',
-            'harga_jual' => 'sometimes|required|numeric',
-            'kategori_id' => 'sometimes|required|integer|exists:m_kategori,kategori_id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'user_id'           => 'sometimes|required|integer',
+            'pembeli'           => 'sometimes|required|string|min:3|max:100',
+            'penjualan_kode'    => 'sometimes|required|string|min:1|unique:t_penjualan,penjualan_kode,' . $penjualan->id,
+            'penjualan_tanggal' => 'sometimes|required|date',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -108,36 +103,36 @@ class BarangController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            if ($barang->image && file_exists(public_path('images/' . $barang->image))) {
-                unlink(public_path('images/' . $barang->image));
+            if ($penjualan->image && file_exists(public_path('images/' . $penjualan->image))) {
+                unlink(public_path('images/' . $penjualan->image));
             }
             $image = $request->file('image');
             $imageName = $image->hashName();
             $image->move(public_path('images'), $imageName);
-            $barang->image = $imageName;
+            $penjualan->image = $imageName;
         }
 
-        $barang->update($request->all());
+        $penjualan->update($request->all());
 
         return response()->json([
             'success' => true,
-            'data' => $barang,
+            'data' => $penjualan,
         ], 200);
     }
 
     protected function destroy($id)
     {
-        $barang = BarangModel::find($id);
+        $penjualan = PenjualanModel::find($id);
 
-        if (!$barang) {
+        if (!$penjualan) {
             return response()->json(['error' => 'Data tidak ditemukan'], 404);
         }
 
-        if ($barang->image && file_exists(public_path('images/' . $barang->image))) {
-            unlink(public_path('images/' . $barang->image));
+        if ($penjualan->image && file_exists(public_path('images/' . $penjualan->image))) {
+            unlink(public_path('images/' . $penjualan->image));
         }
 
-        $barang->delete();
+        $penjualan->delete();
 
         return response()->json([
             'success' => true,

@@ -87,7 +87,7 @@ class PenjualanController extends Controller
             $rules = [
                 'user_id'           => 'required|integer',
                 'pembeli'           => 'required|string|min:3|max:100',
-                'penjualan_kode'    => 'required|string|min:3|unique:t_penjualan,penjualan_kode',
+                'penjualan_kode'    => 'required|string|min:1|unique:t_penjualan,penjualan_kode',
                 'penjualan_tanggal' => 'required|date'
             ];
             // use Illuminate\Support\Facades\Validator;
