@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UserController; // untuk m_user
 use App\Http\Controllers\Api\KategoriController; // untuk m_kategori
 use App\Http\Controllers\Api\BarangController; //untuk m_barang
 use App\Http\Controllers\Api\PenjualanController; //untuk m_barang
+use App\Http\Controllers\Api\DetailController; //untuk m_barang
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,3 +66,10 @@ Route::post('penjualan', [PenjualanController::class, 'store']);
 Route::get('penjualan/{penjualan}', [PenjualanController::class, 'show']);
 Route::put('penjualan/{penjualan}', [PenjualanController::class, 'update']);
 Route::delete('penjualan/{penjualan}', [PenjualanController::class, 'destroy']);
+
+// untuk t_detail
+Route::get('detail', [DetailController::class, 'index']);
+Route::post('detail', [DetailController::class, 'store']);
+Route::get('detail/{detail}', [DetailController::class, 'show']);
+Route::put('detail/{detail}', [DetailController::class, 'update']);
+Route::delete('detail/{detail}', [DetailController::class, 'destroy']);
